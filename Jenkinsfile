@@ -2,9 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Build Docker image') {
-      when {
-        branch 'main'
-      }
       steps {
         script {
           app = docker.build("mywebpage")
@@ -15,9 +12,6 @@ pipeline {
       }
     }
     stage('Deploy') {
-      when {
-        branch 'main'
-      } 
       steps {
         script {
           sh 'docker run -dti --name mywebpage mywebpage'
